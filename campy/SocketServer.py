@@ -29,7 +29,7 @@ class SocketServer(threading.Thread):
     def clean(self):
         if(self.sock != None):
             self.sock.close()
-            self.sock = None:
+            self.sock = None
         if(self.client != None):
             self.client.close()
             self.client = None

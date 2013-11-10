@@ -9,13 +9,13 @@ from SocketServer import SocketServer
 def main():
 
     motion = Motion()
-    socketServer = SocketServer()
+    #socketServer = SocketServer()
 
     motion.start()
-    socketServer.start()
+    #socketServer.start()
 
     motion.join()
-    socketServer.join()
+    #socketServer.join()
 
 
 main()

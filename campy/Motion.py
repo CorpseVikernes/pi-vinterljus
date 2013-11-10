@@ -52,9 +52,9 @@ class Motion(threading.Thread):
 
         # Raspistill options
         if(self.previewON):
-            self.command = "raspistill -w %s -h %s -q %s -t 5 -e bmp -o -" %(imageWidth, imageHeight, imageQuality)
+            self.command = "raspistill -w %s -h %s -q %s -t 5 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
         else:
-            self.command = "raspistill -w %s -h %s -q %s -p %s,%s,%s,%s -t 5 -e bmp -o -" %(imageWidth, imageHeight, imageQuality, previewX, previewY, previewWidth, previewHeight)
+            self.command = "raspistill -w %s -h %s -q %s -p %s,%s,%s,%s -t 5 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
 
 
 

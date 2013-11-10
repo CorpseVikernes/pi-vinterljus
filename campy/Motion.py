@@ -89,7 +89,7 @@ class Motion(threading.Thread):
             for y in xrange(0, self.squareHeight):
                 yPos = matrixY*self.matrixSize + y
                 # Just check green channel as it's the highest quality channel
-                pixdiff = abs(buffer1[xPos,yPos][1] - buffer2[xPos,yPos][1])
+                pixdiff = abs(self.buffer1[xPos,yPos][1] - self.buffer2[xPos,yPos][1])
                 if pixdiff > self.threshold:
                     changedPixels += 1
 

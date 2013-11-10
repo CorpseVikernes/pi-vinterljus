@@ -27,7 +27,7 @@ class Motion(threading.Thread):
         self.sensitivity = 20
 
         # Preview options
-        self.previewON = True
+        self.previewON = False
         self.previewX = 0
         self.previewY = 0
         self.previewWidth = 1024
@@ -59,8 +59,7 @@ class Motion(threading.Thread):
 
 
     def run(self):
-        print "            Motion Detection Started"
-        print "            ------------------------"
+        print "------------ Motion Detection Started ----------------"
         print "Pixel Threshold (How much)   = " + str(self.threshold)
         print "Sensitivity (changed Pixels) = " + str(self.sensitivity)
         print "---------- Motion Capture File Activity --------------"

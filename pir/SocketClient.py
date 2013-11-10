@@ -18,8 +18,10 @@ class SocketClient:
 
     def connectTCP(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.connect((self.HOST, self.PORT))
-
+        try:
+            self.sock.connect((self.HOST, self.PORT))
+        except socket.error, msg:
+            self.close()
 
     def send(self, msg):
         self.sock.send(msg + '\n') #ADD end sign

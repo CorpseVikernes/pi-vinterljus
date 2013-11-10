@@ -27,7 +27,7 @@ class Motion(threading.Thread):
         self.sensitivity = 20
 
         # Preview options
-        self.previewON = True
+        self.previewON = False
         self.previewX = 0
         self.previewY = 0
         self.previewWidth = 400

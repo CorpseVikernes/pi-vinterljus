@@ -27,7 +27,7 @@ class Motion(threading.Thread):
         self.sensitivity = 20
 
         # Preview options
-        self.previewON = False
+        self.previewON = True
         self.previewX = 0
         self.previewY = 0
         self.previewWidth = 400
@@ -52,10 +52,8 @@ class Motion(threading.Thread):
 
         # Raspistill options
         if(self.previewON):
-            print "previewON"
             self.command = "raspistill -hf -vf -w %s -h %s -q %s -p %s,%s,%s,%s -t 5 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
         else:
-            print "previewOff"
             self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 5 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
 
 
@@ -97,7 +95,7 @@ class Motion(threading.Thread):
                 # If a motion should be counted as detected
                 if changedPixels > self.sensitivity:   
                     # Add motion activity
-                    print "Motion detected in : " + str(matrixX) + ", " + str(matrixY)
+                    #print "Motion detected in : " + str(matrixX) + ", " + str(matrixY)
                     return oldValue + 2
                     break
                 continue

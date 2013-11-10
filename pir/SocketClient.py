@@ -28,3 +28,6 @@ class SocketClient:
         if(self.sock != None):
             self.sock.close()
             self.sock = None
+
+    def recieve(self):
+        return self.sock.recv(1024)

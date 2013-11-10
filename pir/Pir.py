@@ -39,6 +39,7 @@ class Pir():
 
       print "  Ready"
 
+      data = 0
       # Loop until users quits with CTRL-C
       while True :
 
@@ -52,6 +53,8 @@ class Pir():
           self.socketClient.connectTCP()
           self.socketClient.send("Motion")
           time.sleep(1)
+          data = self.socketClient.recieve()
+          print "Recieved ", data
           self.close()
           # Record previous state
           Previous_State=1
@@ -59,7 +62,9 @@ class Pir():
           # PIR has returned to ready state
           self.socketClient.connectTCP()
           self.socketClient.send("Motionless")
-          time.sleep(1)
+          time.sleep(1)          
+          data = self.socketClient.recieve()
+          print "Recieved ", data
           self.close()
           Previous_State=0
 

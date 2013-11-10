@@ -13,12 +13,12 @@ class SocketClient:
 
     def connectUDP(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.connect((self.HOST, self.PORT))
+        self.sock.connect((self.HOST, self.PORT))
 
 
     def connectTCP(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.connect((self.HOST, self.PORT))
+        self.sock.connect((self.HOST, self.PORT))
 
 
     def send(self, msg):

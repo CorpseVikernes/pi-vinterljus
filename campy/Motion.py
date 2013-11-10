@@ -83,10 +83,10 @@ class Motion(threading.Thread):
     def motionDetection(self, matrixX, matrixY, oldValue):
         # Count changed pixels
         changedPixels = 0
-        for x in xrange(0, 100):
+        for x in xrange(0, self.squareWidth):
             xPos = matrixX*self.matrixSize + x
             # Scan one line of image then check sensitivity for movement
-            for y in xrange(0, 75):
+            for y in xrange(0, self.squareHeight):
                 yPos = matrixY*self.matrixSize + y
                 # Just check green channel as it's the highest quality channel
                 pixdiff = abs(buffer1[xPos,yPos][1] - buffer2[xPos,yPos][1])
@@ -96,6 +96,7 @@ class Motion(threading.Thread):
                 # If a motion should be counted as detected
                 if changedPixels > self.sensitivity:   
                     # Add motion activity
+                    print "Motion detected in : " + str(matrixX) + ", " + str(matrixY)
                     return oldValue + 2
                     break
                 continue

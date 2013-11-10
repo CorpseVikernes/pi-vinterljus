@@ -46,9 +46,9 @@ class Motion(threading.Thread):
 
         # Init matrix
         self.matrixSize = 20
-        self.squareWidth = self.imageWidth/matrixSize
-        self.squareHeight = self.imageHeight/matrixSize
-        self.matrix = [[0 for i in range(matrixSize)] for j in range(matrixSize)]
+        self.squareWidth = self.imageWidth/self.matrixSize
+        self.squareHeight = self.imageHeight/self.matrixSize
+        self.matrix = [[0 for i in range(self.matrixSize)] for j in range(self.matrixSize)]
 
         # Raspistill options
         if(self.previewON):

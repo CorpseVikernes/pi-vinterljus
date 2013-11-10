@@ -84,10 +84,10 @@ class Motion(threading.Thread):
         # Count changed pixels
         changedPixels = 0
         for x in xrange(0, self.squareWidth):
-            xPos = matrixX*self.matrixSize + x
+            xPos = matrixX*self.squareWidth + x
             # Scan one line of image then check sensitivity for movement
             for y in xrange(0, self.squareHeight):
-                yPos = matrixY*self.matrixSize + y
+                yPos = matrixY*self.squareHeight + y
                 # Just check green channel as it's the highest quality channel
                 pixdiff = abs(self.buffer1[xPos,yPos][1] - self.buffer2[xPos,yPos][1])
                 if pixdiff > self.threshold:

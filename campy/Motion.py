@@ -30,8 +30,8 @@ class Motion(threading.Thread):
         self.previewON = False
         self.previewX = 0
         self.previewY = 0
-        self.previewWidth = 1024
-        self.previewHeight = 800
+        self.previewWidth = 400
+        self.previewHeight = 400
 
         # Image options
         self.imageWidth = 100
@@ -56,7 +56,7 @@ class Motion(threading.Thread):
             self.command = "raspistill -hf -vf -w %s -h %s -q %s -p %s,%s,%s,%s -t 5 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
         else:
             print "previewOff"
-            self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 5 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
+            self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 5 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
 
 
 

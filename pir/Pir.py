@@ -56,7 +56,7 @@ class Pir():
           #data = self.socketClient.recieve()
           #time.sleep(1)
           #print "Recieved ", data
-          self.close()
+          self.socketClient.close()
           # Record previous state
           Previous_State=1
         elif Current_State==0 and Previous_State==1:
@@ -67,7 +67,7 @@ class Pir():
           #data = self.socketClient.recieve()
           #time.sleep(1)  
           #print "Recieved ", data
-          self.close()
+          self.socketClient.close()
           Previous_State=0
 
     except KeyboardInterrupt:

@@ -38,7 +38,7 @@ class SocketServer(threading.Thread):
     def listenToSocket(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
-            self.sock.bind((HOST, PORT))
+            self.sock.bind((self.HOST, self.PORT))
             self.sock.listen(1)
         except socket.error, msg:
             self.clean()

@@ -12,8 +12,11 @@ class SocketClient:
         self.sock = None
 
     def connectUDP(self):
+        print "connectUDP"
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        print "init socket"
         self.sock.connect((self.HOST, self.PORT))
+        print "connected"
 
 
     def connectTCP(self):

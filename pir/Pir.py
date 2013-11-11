@@ -52,6 +52,7 @@ class Pir():
           print "  Motion detected!"
           self.socketClient.connectUDP()
           self.socketClient.send("Motion")
+          print "motion sent"
           data = self.socketClient.recieve()
           #time.sleep(1)
           print "Recieved ", data

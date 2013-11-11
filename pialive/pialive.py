@@ -7,7 +7,7 @@ import time
 
 def main():
     
-    HOST = '192.168.10.10'
+    HOST = '10.1.1.251'
     PORT = 50666
 
 

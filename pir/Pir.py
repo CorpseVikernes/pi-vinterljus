@@ -8,7 +8,7 @@ from SocketClient import SocketClient
 class Pir():
   
   def __init__(self):
-    self.HOST = ''
+    self.HOST = '10.10.1.251'
     self.PORT = 50007
     self.socketClient = SocketClient(self.HOST, self.PORT)
 

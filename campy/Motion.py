@@ -96,7 +96,7 @@ class Motion(threading.Thread):
                 if changedPixels > self.sensitivity:   
                     # Add motion activity
                     #print "Motion detected in : " + str(matrixX) + ", " + str(matrixY)
-                    return oldValue + 2
+                    return 5
                     break
                 continue
         

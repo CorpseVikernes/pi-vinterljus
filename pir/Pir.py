@@ -49,7 +49,7 @@ class Pir():
 
         if Current_State==1 and Previous_State==0:
           # PIR is triggered
-          #print "  Motion detected!"
+          print "  Motion detected!"
           self.socketClient.connectTCP()
           self.socketClient.send("Motion")
           time.sleep(1)

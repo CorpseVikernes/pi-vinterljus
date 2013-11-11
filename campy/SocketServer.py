@@ -82,4 +82,5 @@ class SocketServer(threading.Thread):
         else:
             output = str(dataCount) + "\n"
         
+        print "Sent: \n" + output
         return output

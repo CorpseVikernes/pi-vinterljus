@@ -78,8 +78,8 @@ class SocketServer(threading.Thread):
                     output = output + str(x) + ", " + str(y) + ", " + str(matrix[x][y]) + "\n"
         
         if(dataCount > 0):
-            output = dataCount + "\n" + output
+            output = str(dataCount) + "\n" + output
         else:
-            output = dataCount + "\n"
+            output = str(dataCount) + "\n"
         
         return output

@@ -21,7 +21,7 @@ class Pir():
     # Define GPIO to use on Pi
     GPIO_PIR = 7
 
-    print "PIR Module Holding Time Test (CTRL-C to exit)"
+    #print "PIR Module Holding Time Test (CTRL-C to exit)"
 
     # Set pin as input
     GPIO.setup(GPIO_PIR,GPIO.IN)      # Echo
@@ -31,13 +31,13 @@ class Pir():
 
     try:
 
-      print "Waiting for PIR to settle ..."
+      #print "Waiting for PIR to settle ..."
 
       # Loop until PIR output is 0
       while GPIO.input(GPIO_PIR)==1:
         Current_State  = 0
 
-      print "  Ready"
+      #print "  Ready"
 
       data = 0
       # Loop until users quits with CTRL-C
@@ -49,10 +49,10 @@ class Pir():
 
         if Current_State==1 and Previous_State==0:
           # PIR is triggered
-          print "  Motion detected!"
+          #print "  Motion detected!"
           self.socketClient.connectUDP()
           self.socketClient.send("Motion")
-          print "motion sent"
+          #print "motion sent"
           #data = self.socketClient.recieve()
           #time.sleep(1)
           #print "Recieved ", data
@@ -61,7 +61,7 @@ class Pir():
           Previous_State=1
         elif Current_State==0 and Previous_State==1:
           # PIR has returned to ready state
-          print "Motionless"
+          #print "Motionless"
           self.socketClient.connectUDP()
           self.socketClient.send("Motionless")         
           #data = self.socketClient.recieve()

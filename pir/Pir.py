@@ -52,8 +52,8 @@ class Pir():
           print "  Motion detected!"
           self.socketClient.connectUDP()
           self.socketClient.send("Motion")
-          time.sleep(1)
           data = self.socketClient.recieve()
+          time.sleep(1)
           print "Recieved ", data
           self.close()
           # Record previous state
@@ -61,9 +61,9 @@ class Pir():
         elif Current_State==0 and Previous_State==1:
           # PIR has returned to ready state
           self.socketClient.connectUDP()
-          self.socketClient.send("Motionless")
-          time.sleep(1)          
+          self.socketClient.send("Motionless")         
           data = self.socketClient.recieve()
+          time.sleep(1)  
           print "Recieved ", data
           self.close()
           Previous_State=0

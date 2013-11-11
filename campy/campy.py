@@ -9,7 +9,8 @@ from SocketServer import SocketServer
 def main():
 
     motion = Motion()
-    socketServer = SocketServer()
+    PORT = 50010
+    socketServer = SocketServer(motion, PORT)
 
     motion.start()
     socketServer.start()

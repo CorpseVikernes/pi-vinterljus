@@ -43,7 +43,7 @@ class Pir():
       # Loop until users quits with CTRL-C
       while True :
 
-        time.sleep(1)
+        time.sleep(0.01)
         # Read PIR state
         Current_State = GPIO.input(GPIO_PIR)
 
@@ -58,16 +58,10 @@ class Pir():
           #print "Recieved ", data
           self.socketClient.close()
           # Record previous state
+          time.sleep(1)
           Previous_State=1
         elif Current_State==0 and Previous_State==1:
-          # PIR has returned to ready state
-          #print "Motionless"
-          self.socketClient.connectUDP()
-          self.socketClient.send("Motionless")         
-          #data = self.socketClient.recieve()
-          #time.sleep(1)  
-          #print "Recieved ", data
-          self.socketClient.close()
+          time.sleep(1)
           Previous_State=0
 
     except KeyboardInterrupt:

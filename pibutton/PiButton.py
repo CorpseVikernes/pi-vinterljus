@@ -43,9 +43,9 @@ class PiButton():
         
         print "Button pressed"
         
-        self.sock.connectUDP()
-        self.sock.send("Button pressed")
-        self.sock.close()
+        self.socketClient.connectUDP()
+        self.socketClient.send("Button pressed")
+        self.socketClient.close()
 
         print "Button press sent!"
 

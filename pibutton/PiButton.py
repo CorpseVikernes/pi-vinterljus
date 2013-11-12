@@ -25,7 +25,9 @@ class PiButton():
 
     # Set pin as input
     GPIO.setup(GPIO_BUTTON,GPIO.IN)      # Echo
-
+    
+    # Debugg only
+    debugCounter = 0
     try:
 
       # Loop until users quits with CTRL-C

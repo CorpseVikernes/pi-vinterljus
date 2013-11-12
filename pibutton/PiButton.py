@@ -37,11 +37,11 @@ class PiButton():
 
         # Loop until Button output is 0
         while GPIO.input(GPIO_BUTTON)==1:
-          debugCounter += 1
-          buttonPressed  = 0
-          if(debugCounter == 100000):
-            debugCounter = 0
-            print "Still in loop"
+          time.sleep(1)
+          
+        self.sock.connectUDP()
+        self.sock.send("Button pressed")
+        self.sock.close()
 
         print "Button pressed"
 

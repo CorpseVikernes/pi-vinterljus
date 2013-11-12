@@ -38,7 +38,7 @@ class PiButton():
         input = GPIO.input(GPIO_BUTTON)
         
         if((not prevInput) and input):
-          print "Button pressed"
+          #print "Button pressed"
           time.sleep(0.3)
           self.socketClient.connectUDP()
           self.socketClient.send("Button pressed")

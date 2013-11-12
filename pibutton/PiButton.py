@@ -39,7 +39,7 @@ class PiButton():
         
         if((not prevInput) and input):
           print "Button pressed"
-          time.sleep(0.1)
+          time.sleep(0.3)
           self.socketClient.connectUDP()
           self.socketClient.send("Button pressed")
           self.socketClient.close()

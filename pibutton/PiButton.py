@@ -36,6 +36,7 @@ class PiButton():
         debugCounter += 1
         buttonPressed  = 0
         if(debugCounter == 100000):
+          debugCounter = 0
           print "Still in loop"
 
       # Loop until users quits with CTRL-C

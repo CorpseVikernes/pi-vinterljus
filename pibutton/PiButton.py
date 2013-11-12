@@ -37,7 +37,7 @@ class PiButton():
 
         # Loop until Button output is 0
         while GPIO.input(GPIO_BUTTON)==1:
-          time.sleep(0.05)
+          #time.sleep(0.05)
           pass
           
         

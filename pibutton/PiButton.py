@@ -34,7 +34,7 @@ class PiButton():
       print "Button init"
 
       # Loop until PIR output is 0
-      while GPIO.input(GPIO_PIR)==1:
+      while GPIO.input(GPIO_BUTTON)==1:
         Current_State  = 0
 
       # Loop until users quits with CTRL-C

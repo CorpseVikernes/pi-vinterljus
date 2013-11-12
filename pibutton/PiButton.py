@@ -47,7 +47,7 @@ class PiButton():
         #print "Button press sent!"
 
         prevInput = input
-        time.sleep(0.05) 
+        time.sleep(0.01) 
 
     except KeyboardInterrupt:
       print "  Quit"

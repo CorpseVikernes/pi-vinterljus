@@ -28,7 +28,7 @@ class PiButton():
     
     # Input states
     input = 0
-    prevInput = 0
+    prevInput = 1
 
     try:
 

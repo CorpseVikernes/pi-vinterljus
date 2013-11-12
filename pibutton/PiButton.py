@@ -33,7 +33,7 @@ class PiButton():
       # Loop until users quits with CTRL-C
       while True :
 
-        time.sleep(2)
+        time.sleep(0.1)
 
         # Loop until Button output is 0
         while GPIO.input(GPIO_BUTTON)==1:

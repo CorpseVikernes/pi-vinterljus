@@ -33,9 +33,13 @@ class PiButton():
 
       print "Button init"
 
+      debugCounter = 0
       # Loop until PIR output is 0
       while GPIO.input(GPIO_BUTTON)==1:
+        debugCounter += 1
         Current_State  = 0
+        if(debugCounter == 100000):
+          print "Still in loop"
 
       # Loop until users quits with CTRL-C
       while True :

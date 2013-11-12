@@ -28,8 +28,7 @@ class PiButton():
     
     # Input states
     input = 0
-    prevInput = 1
-    lastInput = 0
+
     try:
 
       # Loop until users quits with CTRL-C
@@ -37,18 +36,14 @@ class PiButton():
 
         input = GPIO.input(GPIO_BUTTON)
         
-        if((not prevInput) and input and (not lastInput)):
-          lastInput = 10
+        if(input):
+          time.sleep(0.5)
           print "Button pressed"
         #print "Button pressed"
         #self.socketClient.connectUDP()
         #self.socketClient.send("Button pressed")
         #self.socketClient.close()
         #print "Button press sent!"
-
-        prevInput = input
-        if(lastInput):
-          lastInput -= 1
 
         time.sleep(0.01) 
 

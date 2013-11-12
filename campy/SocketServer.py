@@ -46,13 +46,15 @@ class SocketServer(threading.Thread):
             sys.exit(1)
 
         while(True):
+            time.sleep(0.01)
             self.client, self.clientAddr = self.sock.accept()
-            clientData = self.client.recv(1024)
-            time.sleep(1)
-            serverData = self.handleClientData(clientData)
-            self.client.send(serverData)
-            self.client.close()
-            self.client = None
+            if(self.client != None):
+                clientData = self.client.recv(1024)
+                time.sleep(1)
+                serverData = self.handleClientData(clientData)
+                self.client.send(serverData)
+                self.client.close()
+                self.client = None
 
             
     # Handles Client messages

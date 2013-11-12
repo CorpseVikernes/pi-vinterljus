@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Vinterljus
-PROG= "python"
+PROG= "python2.7"
 PROG_PATH = "/usr/bin"
 PROG_ARGS = ""
 PID_PATH = "/var/run/"
@@ -12,9 +12,7 @@ start() {
         ## Program is running, exit with error.
         echo "Error! $PROG is currently running!" 1>&2
         exit 1
-    else
-        touch "$PID_PATH/$PROG.pid"
-	sleep 2 
+    else 
 	echo "-----------------------"
 	echo "Starting Camera .. "
 	$PROG_PATH/$PROG $PROG_ARGS /home/pi/pi-vinterljus/campy/campy.py &
@@ -39,33 +37,6 @@ start() {
 	echo "PI-VINTERLJUS INITIATED"
 	touch "$PID_PATH/$PROG.pid"
     fi
-}
-
-
-start() {
-    sleep 2 
-    echo "-----------------------"
-    echo "Starting Camera .. "
-    $PROG /home/pi/pi-vinterljus/campy/campy.py &
-    sleep 1
-    echo "Camera running!"
-    echo "-----------------------"
-    echo "Starting PIR .."
-    $PROG /home/pi/pi-vinterljus/pir/pir.py &
-    sleep 1
-    echo "PIR running!"
-    echo "-----------------------"
-    echo "Starting PiAlive .."
-    $PROG /home/pi/pi-vinterljus/pialive/pialive.py &
-    sleep 1
-    echo "PiAlive running!"
-    echo "-----------------------"
-    echo "Starting PiButton .."
-    $PROG1 /home/pi/pi-vinterljus/pibutton/pibutton.py &
-    sleep 1
-    echo "PiButton running!"
-    echo "-----------------------"
-    echo "PI-VINTERLJUS INITIATED"
 }
 
 stop() {    

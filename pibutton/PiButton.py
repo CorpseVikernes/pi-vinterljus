@@ -19,7 +19,7 @@ class PiButton():
     GPIO.setmode(GPIO.BCM)
 
     # Define GPIO to use on Pi
-    GPIO_BUTTON = 6
+    GPIO_BUTTON = 8
 
     #print "PIR Module Holding Time Test (CTRL-C to exit)"
 

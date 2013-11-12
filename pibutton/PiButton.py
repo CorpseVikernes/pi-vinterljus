@@ -40,7 +40,7 @@ class PiButton():
         self.socketClient.send("Button pressed")
         self.socketClient.close()
         print "Button press sent!"
-        time.sleep(0.5) 
+        time.sleep(0.1) 
 
     except KeyboardInterrupt:
       print "  Quit"

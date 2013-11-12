@@ -26,9 +26,6 @@ class PiButton():
     # Set pin as input
     GPIO.setup(GPIO_BUTTON,GPIO.IN)      # Echo
 
-    Current_State  = 0
-    Previous_State = 0
-
     try:
 
       print "Button init"
@@ -37,7 +34,7 @@ class PiButton():
       # Loop until PIR output is 0
       while GPIO.input(GPIO_BUTTON)==1:
         debugCounter += 1
-        Current_State  = 0
+        buttonPressed  = 0
         if(debugCounter == 100000):
           print "Still in loop"
 
@@ -46,18 +43,15 @@ class PiButton():
 
         time.sleep(1)
         # Read PIR state
-        Current_State = GPIO.input(GPIO_BUTTON)
+        buttonPressed = GPIO.input(GPIO_BUTTON)
 
-        if Current_State==1 and Previous_State==0:
+        if(buttonPressed):
           # BUTTON is triggered
           print "Button pressed"
           #self.socketClient.connectUDP()
           #self.socketClient.send("Button pressed")
           #self.socketClient.close()
           # Record previous state
-          Previous_State=1
-        elif Current_State==0 and Previous_State==1:
-          Previous_State=0
 
     except KeyboardInterrupt:
       print "  Quit"

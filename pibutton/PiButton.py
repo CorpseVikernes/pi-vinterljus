@@ -28,17 +28,6 @@ class PiButton():
 
     try:
 
-      print "Button init"
-
-      debugCounter = 0
-      # Loop until Button output is 0
-      while GPIO.input(GPIO_BUTTON)==1:
-        debugCounter += 1
-        buttonPressed  = 0
-        if(debugCounter == 100000):
-          debugCounter = 0
-          print "Still in loop"
-
       # Loop until users quits with CTRL-C
       while True :
 
@@ -48,13 +37,12 @@ class PiButton():
         
         print "Input: " + str(buttonPressed)
 
-        if(buttonPressed == 1):
-          # BUTTON is triggered
+        # BUTTON is triggered
+        if(buttonPressed == 0):
           print "Button pressed"
           #self.socketClient.connectUDP()
           #self.socketClient.send("Button pressed")
           #self.socketClient.close()
-          # Record previous state
 
     except KeyboardInterrupt:
       print "  Quit"

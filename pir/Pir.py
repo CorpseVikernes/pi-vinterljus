@@ -16,7 +16,7 @@ class Pir(threading.Thread):
 
     # Threading init
     threading.Thread.__init__(self)
-    self.setName = "PIR" + str(self.GPIO_PIR)
+    self.setName("PIR" + str(self.GPIO_PIR))
     self.daemon = True
 
   def run(self):
@@ -58,7 +58,7 @@ class Pir(threading.Thread):
           # PIR is triggered
           #print "  Motion detected!"
           self.socketClient.connectUDP()
-          self.socketClient.send("Motion")
+          self.socketClient.send(self.getName())
           #print "motion sent"
           #data = self.socketClient.recieve()
           #time.sleep(1)

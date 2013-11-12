@@ -1,6 +1,9 @@
 #!/bin/bash
 
 ## Vinterljus
+## sudo cp myscript /etc/init.d
+## sudo chmod +x /etc/init.d/myscript
+## sudo update-rc.d myscript defaults
 PROG="python2.7"
 PROG_PATH="/usr/bin"
 PROG_ARGS=""

@@ -31,7 +31,7 @@ class PiButton():
       print "Button init"
 
       debugCounter = 0
-      # Loop until PIR output is 0
+      # Loop until Button output is 0
       while GPIO.input(GPIO_BUTTON)==1:
         debugCounter += 1
         buttonPressed  = 0
@@ -44,8 +44,10 @@ class PiButton():
         time.sleep(1)
         # Read PIR state
         buttonPressed = GPIO.input(GPIO_BUTTON)
+        
+        print "Input: " + str(buttonPressed)
 
-        if(buttonPressed):
+        if(buttonPressed == 1):
           # BUTTON is triggered
           print "Button pressed"
           #self.socketClient.connectUDP()

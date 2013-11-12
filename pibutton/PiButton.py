@@ -35,15 +35,19 @@ class PiButton():
         while(GPIO.input(GPIO_BUTTON)==1):
           time.sleep(0.001)
 
+        print "Button pressed"
+
         # Loop until Button output is 0
         while(GPIO.input(GPIO_BUTTON)==0):
           time.sleep(0.001)
 
-        print "Button pressed"
-        self.socketClient.connectUDP()
-        self.socketClient.send("Button pressed")
-        self.socketClient.close()
-        print "Button press sent!"
+        print "Button released"
+
+        #print "Button pressed"
+        #self.socketClient.connectUDP()
+        #self.socketClient.send("Button pressed")
+        #self.socketClient.close()
+        #print "Button press sent!"
         time.sleep(0.1) 
 
     except KeyboardInterrupt:

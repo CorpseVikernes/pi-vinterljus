@@ -11,7 +11,7 @@ def main():
     PORT = 50666
 
     alive = "PiAlive "
-    command = /opt/vc/bin/vcgencmd measure_temp
+    command = "/opt/vc/bin/vcgencmd measure_temp"
 
     while(True):
         time.sleep(3)

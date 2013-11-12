@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ## Vinterljus
-PROG= "python2.7"
-PROG_PATH = "/usr/bin"
-PROG_ARGS = ""
-PID_PATH = "/var/run/"
+PROG="python2.7"
+PROG_PATH="/usr/bin"
+PROG_ARGS=""
+PID_PATH="/var/run/"
 
 
 start() {

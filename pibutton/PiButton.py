@@ -28,6 +28,7 @@ class PiButton():
     
     # Input states
     input = 0
+    prevInput = 1
 
     try:
 
@@ -36,7 +37,7 @@ class PiButton():
 
         input = GPIO.input(GPIO_BUTTON)
         
-        if(input):
+        if((not prevInput) and input):
           time.sleep(0.5)
           print "Button pressed"
         #print "Button pressed"
@@ -45,6 +46,7 @@ class PiButton():
         #self.socketClient.close()
         #print "Button press sent!"
 
+        prevInput = input
         time.sleep(0.01) 
 
     except KeyboardInterrupt:

@@ -46,11 +46,11 @@ class SocketServer(threading.Thread):
             sys.exit(1)
 
         while(True):
-            time.sleep(0.01)
+            time.sleep(0.5)
             self.client, self.clientAddr = self.sock.accept()
             if(self.client != None):
                 clientData = self.client.recv(1024)
-                time.sleep(1)
+                time.sleep(0.5)
                 serverData = self.handleClientData(clientData)
                 self.client.send(serverData)
                 self.client.close()

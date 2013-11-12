@@ -120,6 +120,7 @@ class Motion(threading.Thread):
                 for y in xrange(self.matrixSize):
                     matrixValue = self.matrix[x][y]
                     self.matrix[x][y] = self.motionDetection(x,y, matrixValue)
+                    time.sleep(0.01)
  
             # Swap comparison buffers
             self.image1  = self.image2

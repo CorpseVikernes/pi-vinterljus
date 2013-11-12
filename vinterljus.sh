@@ -13,32 +13,31 @@ start() {
         echo "Error! $PROG is currently running!" 1>&2
         exit 1
     else
-        ## Change from /dev/null to something like /var/log/$PROG if you want to save output.
-        $PROG_PATH/$PROG $PROG_ARGS 2>&1 >/dev/null &
         touch "$PID_PATH/$PROG.pid"
 	sleep 2 
 	echo "-----------------------"
 	echo "Starting Camera .. "
-	$PROG /home/pi/pi-vinterljus/campy/campy.py &
+	$PROG_PATH/$PROG $PROG_ARGS /home/pi/pi-vinterljus/campy/campy.py &
 	sleep 1
 	echo "Camera running!"
 	echo "-----------------------"
 	echo "Starting PIR .."
-	$PROG /home/pi/pi-vinterljus/pir/pir.py &
+	$PROG_PATH/$PROG $PROG_ARGS /home/pi/pi-vinterljus/pir/pir.py &
 	sleep 1
 	echo "PIR running!"
 	echo "-----------------------"
 	echo "Starting PiAlive .."
-	$PROG /home/pi/pi-vinterljus/pialive/pialive.py &
+	$PROG_PATH/$PROG $PROG_ARGS /home/pi/pi-vinterljus/pialive/pialive.py &
 	sleep 1
 	echo "PiAlive running!"
 	echo "-----------------------"
 	echo "Starting PiButton .."
-	$PROG1 /home/pi/pi-vinterljus/pibutton/pibutton.py &
+	$PROG_PATH/$PROG $PROG_ARGS /home/pi/pi-vinterljus/pibutton/pibutton.py &
 	sleep 1
 	echo "PiButton running!"
 	echo "-----------------------"
 	echo "PI-VINTERLJUS INITIATED"
+	touch "$PID_PATH/$PROG.pid"
     fi
 }
 

@@ -26,29 +26,28 @@ class PiButton():
     # Set pin as input
     GPIO.setup(GPIO_BUTTON,GPIO.IN)      # Echo
     
+    # Input states
+    input = 0
+    prevInput = 0
+
     try:
 
       # Loop until users quits with CTRL-C
       while True :
 
-
-        while(GPIO.input(GPIO_BUTTON)==1):
-          time.sleep(0.001)
-
-        print "Button pressed"
-
-        # Loop until Button output is 0
-        while(GPIO.input(GPIO_BUTTON)==0):
-          time.sleep(0.001)
-
-        print "Button released"
-
+        input = GPIO.input(GPIO_BUTTON)
+        
+        if((not prevInput) and input):
+          
+          print "Button pressed"
         #print "Button pressed"
         #self.socketClient.connectUDP()
         #self.socketClient.send("Button pressed")
         #self.socketClient.close()
         #print "Button press sent!"
-        time.sleep(0.1) 
+
+        prevInput = input
+        time.sleep(0.05) 
 
     except KeyboardInterrupt:
       print "  Quit"

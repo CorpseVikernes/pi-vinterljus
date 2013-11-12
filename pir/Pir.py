@@ -4,27 +4,34 @@
 import time
 import RPi.GPIO as GPIO
 from SocketClient import SocketClient
+import threading
 
-class Pir():
+class Pir(threading.Thread):
   
-  def __init__(self):
+  def __init__(self, GPIO):
     self.HOST = '192.168.10.10'
     self.PORT = 50007
     self.socketClient = SocketClient(self.HOST, self.PORT)
+    self.GPIO_PIR = GPIO
 
-  def start(self):   
+    # Threading init
+    threading.Thread.__init__(self)
+    self.setName = "PIR" + str(self.GPIO_PIR)
+    self.daemon = True
+
+  def run(self):
+    self.detect()
+
+  def detect(self):   
 
     # Use BCM GPIO references
     # instead of physical pin numbers
     GPIO.setmode(GPIO.BCM)
 
-    # Define GPIO to use on Pi
-    GPIO_PIR = 7
-
     #print "PIR Module Holding Time Test (CTRL-C to exit)"
 
     # Set pin as input
-    GPIO.setup(GPIO_PIR,GPIO.IN)      # Echo
+    GPIO.setup(self.GPIO_PIR,GPIO.IN)      # Echo
 
     Current_State  = 0
     Previous_State = 0
@@ -34,7 +41,7 @@ class Pir():
       #print "Waiting for PIR to settle ..."
 
       # Loop until PIR output is 0
-      while GPIO.input(GPIO_PIR)==1:
+      while GPIO.input(self.GPIO_PIR)==1:
         Current_State  = 0
 
       #print "  Ready"
@@ -45,7 +52,7 @@ class Pir():
 
         time.sleep(0.01)
         # Read PIR state
-        Current_State = GPIO.input(GPIO_PIR)
+        Current_State = GPIO.input(self.GPIO_PIR)
 
         if Current_State==1 and Previous_State==0:
           # PIR is triggered

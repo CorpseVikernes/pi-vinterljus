@@ -59,11 +59,6 @@ class Motion(threading.Thread):
 
 
     def run(self):
-        #print "------------ Motion Detection Started ----------------"
-        #print "Pixel Threshold (How much)   = " + str(self.threshold)
-        #print "Sensitivity (changed Pixels) = " + str(self.sensitivity)
-        #print "---------- Motion Capture File Activity --------------"
-
         self.matrixDetection()
 
 

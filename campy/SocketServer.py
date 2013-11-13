@@ -51,7 +51,7 @@ class SocketServer(threading.Thread):
             if(self.client != None):
                 clientData = self.client.recv(1024)
                 time.sleep(0.5)
-                print "recieved: \n" + str(clientData)
+                #print "recieved: \n" + str(clientData)
                 # self.client.send(serverData)
                 self.client.close()
                 self.client = None

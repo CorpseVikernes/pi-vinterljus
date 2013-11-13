@@ -7,6 +7,7 @@ import os
 import time
 from datetime import datetime
 from PIL import Image
+from SocketClient import SocketClient
 
 import threading
 
@@ -14,7 +15,8 @@ import threading
 class Motion(threading.Thread):
 
 
-    def __init__(self):
+    def __init__(self, socketClient):
+
 
         # Threading init
         threading.Thread.__init__(self)
@@ -56,6 +58,9 @@ class Motion(threading.Thread):
         else:
             self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 5 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
 
+        # Set socket
+        self.sock = socketClient
+        self.sock.matrixSize = self.matrixSize
 
 
     def run(self):
@@ -120,3 +125,5 @@ class Motion(threading.Thread):
             # Swap comparison buffers
             self.image1  = self.image2
             self.buffer1 = self.buffer2
+            self.sock.sendMatrix(self.matrix)
+            

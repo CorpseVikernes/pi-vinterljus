@@ -3,23 +3,22 @@
 
 
 from Motion import Motion
-from SocketServer import SocketServer
+
 
 
 def main():
 
     # Init motion detection and socketserver
     motion = Motion()
-    PORT = 50010
-    socketServer = SocketServer(motion, PORT)
+    socketClient = SocketClient()
 
     # Start program
     motion.start()
-    socketServer.start()
+    socketClient.start()
 
     # Wait until threads die
     motion.join()
-    socketServer.join()
+    socketClient.join()
 
 
 main()

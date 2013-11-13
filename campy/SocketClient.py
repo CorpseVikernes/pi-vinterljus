@@ -51,7 +51,7 @@ class SocketClient(threading.Thread):
                 msg += "," + str(x) + "," + str(y) + "," + str(self.matrix[x][y])
                 
         msg = msg[1:]
-        print msg
+        #print msg
         self.connectTCP()
         self.send(msg)
         self.close()

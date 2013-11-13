@@ -8,7 +8,7 @@ import time
 
 class SocketServer(threading.Thread):
 
-    def __init__(self, motion, PORT):
+    def __init__(self, motion):
         # Init motion
         self.motion = motion
 
@@ -19,7 +19,7 @@ class SocketServer(threading.Thread):
 
         # Init socket
         self.HOST = ''
-        self.PORT = PORT
+        self.PORT = 50010
         self.sock = None
         self.client = None
         self.clientAddr = None
@@ -51,8 +51,8 @@ class SocketServer(threading.Thread):
             if(self.client != None):
                 clientData = self.client.recv(1024)
                 time.sleep(0.5)
-                serverData = self.handleClientData(clientData)
-                self.client.send(serverData)
+                print "recieved: \n" + str(clientData)
+                # self.client.send(serverData)
                 self.client.close()
                 self.client = None
 

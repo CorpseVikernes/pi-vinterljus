@@ -9,8 +9,9 @@ from Motion import Motion
 def main():
 
     # Init motion detection and socketserver
-    motion = Motion()
     socketClient = SocketClient()
+    motion = Motion(socketClient)
+    
     socketServer = SocketServer(motion)
 
     # Start program

@@ -45,7 +45,7 @@ class SocketClient(threading.Thread):
 
     def sendMatrix(self, matrix):
         self.matrix = matrix
-
+        msg = 0
         for x in xrange(self.matrixSize):
             for y in xrange(self.matrixSize):
                 msg += "," + str(x) + "," + str(y) + "," + self.matrix[x][y]

@@ -17,7 +17,7 @@ class SocketClient(threading.Thread):
         self.matrixSize = 0
 
         # Init socket
-        self.HOST = '192.168.1.100'
+        self.HOST = ''
         self.PORT = 50010
         self.sock = None
 

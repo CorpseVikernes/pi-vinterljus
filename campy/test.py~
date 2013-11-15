@@ -1,0 +1,9 @@
+from cv2 import *
+
+cam = VideoCapture(0)
+s, img = cam.read()
+if s:
+    namedWindow("cam-test",CV_WINDOW_AUTOSIZE)
+    imshow("cam-test", img)
+    waitkey(0)
+    destroyWindow("cam-test")

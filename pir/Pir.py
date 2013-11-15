@@ -56,7 +56,7 @@ class Pir(threading.Thread):
 
         if Current_State==1 and Previous_State==0:
           # PIR is triggered
-          #print "  Motion detected!"
+          print "  Motion detected!"
           self.socketClient.connectUDP()
           self.socketClient.send(self.getName())
           #print "motion sent"

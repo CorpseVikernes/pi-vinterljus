@@ -4,47 +4,35 @@
 import StringIO
 import subprocess
 import os
+import sys
 import time
 from datetime import datetime
 from PIL import Image
 from SocketClient import SocketClient
+import pygame
+import pygame.camera
+from cv2 import *
+
 
 import threading
 
 
-class Motion(threading.Thread):
+class Capture(threading.Thread):
 
 
-    def __init__(self, socketClient):
+    def __init__(self):
 
 
         # Threading init
         threading.Thread.__init__(self)
-        self.setName = "Motion"
+        self.setName = "Capture"
         self.daemon = True
         
-        # Threshold (Amount of pixel color change)
-        self.threshold = 10
-        # Sensitivity (Amount of pixels needed to signal motion detected)
-        self.sensitivity = 20
-
-        # Preview options
-        self.previewON = True
-        self.previewX = 0
-        self.previewY = 0
-        self.previewWidth = 400
-        self.previewHeight = 400
-
-        # Image options
-        self.imageWidth = 40
-        self.imageHeight = 40
-        self.imageQuality = 20
         
-        # Init buffers
-        self.image1 = None
-        self.image2 = None
-        self.buffer1 = None
-        self.buffer2 = None
+        # Threshold (Amount of pixel color change)
+        self.threshold = 40
+        # Sensitivity (Amount of pixels needed to signal motion detected)
+        self.sensitivity = 200
 
         # Init matrix
         self.matrixSize = 20
@@ -52,25 +40,82 @@ class Motion(threading.Thread):
         self.squareHeight = self.imageHeight/self.matrixSize
         self.matrix = [[0 for i in range(self.matrixSize)] for j in range(self.matrixSize)]
 
-        # Raspistill options
-        if(self.previewON):
-            self.command = "raspistill -hf -vf -w %s -h %s -q %s -p %s,%s,%s,%s -t 0 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
-        else:
-            self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 2 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
+        # Activate uv4l device:
+        os.system("sudo pkill uv4l")
+        os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
 
-        # Set socket
-        self.sock = socketClient
-        self.sock.matrixSize = self.matrixSize
+        pygame.init()
+        pygame.camera.init()
 
+        self.cam = pygame.camera.Camera("/dev/video0",(320,240))
+            
+        self.oldSurface = None
+        self.newSurface = None
 
     def run(self):
-        self.matrixDetection()
+        self.cam.start()
+        self.captureImages()
+        # self.matrixDetection()
 
 
+    def captureImages(self):
+        #print "start"
+        self.oldSurface = self.cam.get_image()
+        #time.sleep(0.5)
+        print "First picture taken"
+        while True:
+            try:
+                #time.sleep(1)
+                self.newSurface = self.cam.get_image()
+                self.detectMotion(0)
+                #print "Alive"
+                time.sleep(0.01)
+                self.oldSurface = self.newSurface
+            except KeyboardInterrupt:
+                self.cam.stop()
+                pygame.quit()
+                sys.exit(1)
+
+
+    # Test
+    def detectMotion(self, oldValue):
+
+        changedPixels = 0
+        pixdiff = 0
+        for x in range(self.newSurface.get_width()):
+            for y in range(self.newSurface.get_height()):
+                newColor = self.newSurface.get_at((x,y))
+                oldColor = self.oldSurface.get_at((x,y))
+                # Check pixel diffrence in the green channel
+                #print str(newColor) + " - " + str(oldColor)
+                pixdiff = abs(newColor[0] - oldColor[0])
+                #print str(pixdiff) + " " + str(self.threshold)
+                # time.sleep(0.05)
+                if pixdiff > self.threshold:
+                    changedPixels += 1
+                    print changedPixels
+
+
+                if changedPixels > self.sensitivity:
+                    #print "Motion Detected"
+                    return 5
+        
+        print "Motionless"
+        if(oldValue > 0):
+            oldValue = oldValue - 1
+        return oldValue
+
+
+
+
+
+            
+        
+    
     # Capture a small test image (for motion detection)
     def captureTestImage(self):
         imageData = StringIO.StringIO()
-        imageData.write(subprocess.check_output(self.command, shell=True))
+        #imageData.write(subprocess.check_output(self.command, shell=True))
         imageData.seek(0)
         im = Image.open(imageData)
         buffer = im.load()
@@ -125,5 +170,5 @@ class Motion(threading.Thread):
             # Swap comparison buffers
             self.image1  = self.image2
             self.buffer1 = self.buffer2
-            self.sock.sendMatrix(self.matrix)
+            #self.sock.sendMatrix(self.matrix)
             

@@ -27,7 +27,7 @@ class CamTest():
             self.s, self.img = self.cam.read()
     
             if self.oldImg != 0:
-                motionDetect()
+                self.motionDetect()
             self.oldImg = self.img
 
     def motionDetect(self):

@@ -21,6 +21,7 @@ class CamTest():
         self.cam = cv2.VideoCapture(0)
 
     def run(self):
+        print "Starting motion detection"
         while self.s:
             time.sleep(0.05)
             self.s, self.img = self.cam.read()

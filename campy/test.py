@@ -28,8 +28,8 @@ class CamTest():
         while True:
             time.sleep(0.5)
             self.s, self.img = self.cam.read()
-            
-            print str(self.img)
+            imgStr = str(self.img)
+            print imgStr[0:100]
 
             if (not self.s):
                 print "Failed to capture video"

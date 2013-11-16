@@ -37,6 +37,7 @@ class CamTest():
                 print "Failed to capture video"
             
             if self.img != None:
+                print "new picture"
                 self.motionDetect()
                 self.oldImg = self.img
 
@@ -55,10 +56,10 @@ class CamTest():
                     changedPixels += 1
                 
                 if changedPixels > self.sensitivity:
-                    print "motion detected"
+                    #print "motion detected"
                     return
 
-        print "motionless"
+        #print "motionless"
 
 
 

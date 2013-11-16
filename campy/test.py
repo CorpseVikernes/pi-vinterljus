@@ -20,22 +20,22 @@ class CamTest():
         os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
  
         time.sleep(1)
-        # self.cam = cv2.VideoCapture(0)
-        self.cam = cv.CaptureFromCAM(0)
+        self.cam = cv2.VideoCapture(0)
+        #self.cam = cv.CaptureFromCAM(0)
 
     def run(self):
         # print "Starting motion detection"
         while True:
             time.sleep(0.5)
-            self.img = cv.QueryFrame(self.cam)
+            self.s, self.img = self.cam.read()
             
             print str(self.img)
 
-            #if (not self.s):
-                #print "Failed to capture video"
+            if (not self.s):
+                print "Failed to capture video"
             
-            #if self.s:
-                #self.motionDetect()
+            if self.img != None:
+                self.motionDetect()
             self.oldImg = self.img
 
     def motionDetect(self):

@@ -28,6 +28,8 @@ class CamTest():
         while True:
             time.sleep(0.5)
             self.img = cv.QueryFrame(self.cam)
+            
+            print str(self.img)
 
             if (not self.s):
                 print "Failed to capture video"

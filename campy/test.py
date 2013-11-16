@@ -34,8 +34,8 @@ class CamTest():
     
         pixDiff = 0
         changedPixels = 1
-        for x in range(width):
-            for y in range(height):
+        for x in range(self.width):
+            for y in range(self.height):
                 newPix = self.img[x][y][self.colorChannel]
                 oldPix = self.oldImg[x][y][self.colorChannel]
                 pixDiff = abs(newPix - oldPix)

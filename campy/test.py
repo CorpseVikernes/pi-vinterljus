@@ -25,6 +25,7 @@ class CamTest():
 
     def run(self):
         # print "Starting motion detection"
+        time.sleep(0.5)
         self.s, self.oldImg = self.cam.read()
         while True:
             time.sleep(0.5)

@@ -17,7 +17,7 @@ class SocketClient(threading.Thread):
         self.matrixSize = 0
 
         # Init socket
-        self.HOST = ''
+        self.HOST = '192.168.10.10'
         self.PORT = 50010
         self.sock = None
 
@@ -46,12 +46,21 @@ class SocketClient(threading.Thread):
     def sendMatrix(self, matrix):
         self.matrix = matrix
         msg = ""
+
+        # for x in xrange(self.matrixSize):
+        #     for y in xrange(self.matrixSize):
+        #         msg += "," + str(x) + "," + str(y) + "," + str(self.matrix[x][y])
+
+        #Send only sides
         for x in xrange(self.matrixSize):
-            for y in xrange(self.matrixSize):
-                msg += "," + str(x) + "," + str(y) + "," + str(self.matrix[x][y])
-                
+            msg += "," + str(0) + "," + str(x) + "," + str(self.matrix[0][x])
+            msg += "," + str(self.matrixSize-1) + "," + str(x) + "," + str(self.matrix[self.matrixSize-1][x])
+
+       
         msg = msg[1:]
         #print msg
         self.connectTCP()
         self.send(msg)
         self.close()
+
+

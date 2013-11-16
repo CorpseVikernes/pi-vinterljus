@@ -24,7 +24,7 @@ class Motion(threading.Thread):
         self.daemon = True
         
         # Threshold (Amount of pixel color change)
-        self.threshold = 10
+        self.threshold = 5
         # Sensitivity (Amount of pixels needed to signal motion detected)
         self.sensitivity = 20
 
@@ -97,7 +97,7 @@ class Motion(threading.Thread):
                 if changedPixels > self.sensitivity:   
                     # Add motion activity
                     #print "Motion"
-                    return 5
+                    return 1
         
         # Remove motion activity 
         if(oldValue > 0):
@@ -118,14 +118,22 @@ class Motion(threading.Thread):
             self.image2, self.buffer2 = self.captureTestImage()
             
             # For each position in the matrix check for motion
+            # for x in xrange(self.matrixSize):
+            #     for y in xrange(self.matrixSize):
+            #         matrixValue = self.matrix[x][y]
+            #         self.matrix[x][y] = self.motionDetection(x,y, matrixValue)
+
+
+            # Check only sides
             for x in xrange(self.matrixSize):
-                for y in xrange(self.matrixSize):
-                    matrixValue = self.matrix[x][y]
-                    self.matrix[x][y] = self.motionDetection(x,y, matrixValue)
- 
+                matrixValue = self.matrix[0][x]
+                self.matrix[0][x] = self.motionDetection(0,x, matrixValue)
+                matrixValue = self.matrix[self.matrixSize-1][x]
+                self.matrix[self.matrixSize-1][x] = self.motionDetection(self.matrixSize-1, x, matrixValue)
+
             # Swap comparison buffers
             self.image1  = self.image2
             self.buffer1 = self.buffer2
-            print "Picture taken"
-            #self.sock.sendMatrix(self.matrix)
+            #print "Picture taken"
+            self.sock.sendMatrix(self.matrix)
             

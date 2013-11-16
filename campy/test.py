@@ -19,7 +19,7 @@ class CamTest():
         os.system("sudo pkill uv4l")
         os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
  
-        #time.sleep(1)
+        time.sleep(1)
         self.cam = cv2.VideoCapture(0)
         #self.cam = cv.CaptureFromCAM(0)
 

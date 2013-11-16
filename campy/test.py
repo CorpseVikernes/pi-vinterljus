@@ -7,7 +7,8 @@ os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --
 
 class CamTest():
 
-
+    width = 320
+    height = 240
     threshold = 20
     sensitivity = 180
     colorChannel = 1

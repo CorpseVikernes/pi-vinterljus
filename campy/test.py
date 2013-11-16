@@ -28,7 +28,7 @@ class CamTest():
         time.sleep(0.5)
         self.s, self.oldImg = self.cam.read()
         while True:
-            time.sleep(0.1)
+            #time.sleep(0.01)
             self.s, self.img = self.cam.read()
             #imgStr = str(self.img)
             #print imgStr[0:100]

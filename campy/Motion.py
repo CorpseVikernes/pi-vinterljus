@@ -118,18 +118,18 @@ class Motion(threading.Thread):
             self.image2, self.buffer2 = self.captureTestImage()
             
             # For each position in the matrix check for motion
-            # for x in xrange(self.matrixSize):
-            #     for y in xrange(self.matrixSize):
-            #         matrixValue = self.matrix[x][y]
-            #         self.matrix[x][y] = self.motionDetection(x,y, matrixValue)
+            for x in xrange(self.matrixSize):
+                for y in xrange(self.matrixSize):
+                    matrixValue = self.matrix[x][y]
+                    self.matrix[x][y] = self.motionDetection(x,y, matrixValue)
 
 
             # Check only sides
-            for x in xrange(self.matrixSize):
-                matrixValue = self.matrix[0][x]
-                self.matrix[0][x] = self.motionDetection(0,x, matrixValue)
-                matrixValue = self.matrix[self.matrixSize-1][x]
-                self.matrix[self.matrixSize-1][x] = self.motionDetection(self.matrixSize-1, x, matrixValue)
+            #for x in xrange(self.matrixSize):
+            #    matrixValue = self.matrix[0][x]
+            #    self.matrix[0][x] = self.motionDetection(0,x, matrixValue)
+            #    matrixValue = self.matrix[self.matrixSize-1][x]
+            #    self.matrix[self.matrixSize-1][x] = self.motionDetection(self.matrixSize-1, x, matrixValue)
 
             # Swap comparison buffers
             self.image1  = self.image2

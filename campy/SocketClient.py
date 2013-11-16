@@ -47,14 +47,14 @@ class SocketClient(threading.Thread):
         self.matrix = matrix
         msg = ""
 
-        # for x in xrange(self.matrixSize):
-        #     for y in xrange(self.matrixSize):
-        #         msg += "," + str(x) + "," + str(y) + "," + str(self.matrix[x][y])
+        for x in xrange(self.matrixSize):
+            for y in xrange(self.matrixSize):
+                msg += "," + str(x) + "," + str(y) + "," + str(self.matrix[x][y])
 
         #Send only sides
-        for x in xrange(self.matrixSize):
-            msg += "," + str(0) + "," + str(x) + "," + str(self.matrix[0][x])
-            msg += "," + str(self.matrixSize-1) + "," + str(x) + "," + str(self.matrix[self.matrixSize-1][x])
+        #for x in xrange(self.matrixSize):
+        #    msg += "," + str(0) + "," + str(x) + "," + str(self.matrix[0][x])
+        #    msg += "," + str(self.matrixSize-1) + "," + str(x) + "," + str(self.matrix[self.matrixSize-1][x])
 
        
         msg = msg[1:]

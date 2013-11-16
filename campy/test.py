@@ -2,9 +2,6 @@ import cv2
 import os
 import time
 
-os.system("sudo pkill uv4l")
-os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
-
 class CamTest():
 
     width = 320
@@ -18,7 +15,10 @@ class CamTest():
     cam = 0
 
     def __init__(self):
-
+        os.system("sudo pkill uv4l")
+        os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
+ 
+        time.sleep(1)
         self.cam = cv2.VideoCapture(0)
 
     def run(self):
@@ -52,6 +52,7 @@ class CamTest():
                     return
 
         print "motionless"
+
 
 
 camTest = CamTest()

@@ -22,10 +22,10 @@ class CamTest():
         self.cam = cv2.VideoCapture(0)
 
     def run(self):
-        print "Starting motion detection"
+        # print "Starting motion detection"
         while True:
             time.sleep(0.5)
-            self.s, self.img = self.cam.read()
+            self.img = cv.QueryFrame(self.cam)
 
             if (not self.s):
                 print "Failed to capture video"

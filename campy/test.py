@@ -8,7 +8,7 @@ class CamTest():
     width = 320
     height = 240
     threshold = 20
-    sensitivity = 180
+    sensitivity = 70000
     colorChannel = 1
     oldImg = 0
     img = 0
@@ -16,8 +16,8 @@ class CamTest():
     cam = 0
 
     def __init__(self):
-        os.system("sudo pkill uv4l")
-        os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
+        #os.system("sudo pkill uv4l")
+        #os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
  
         time.sleep(1)
         self.cam = cv2.VideoCapture(0)
@@ -44,19 +44,19 @@ class CamTest():
     def motionDetect(self):
     
         pixDiff = 0
-        changedPixels = 1
+        changedPixels = 0
         for x in range(self.width):
             for y in range(self.height):
                 #print str(x) + "," + str(y)
                 newPix = self.img[x][y][self.colorChannel]
                 oldPix = self.oldImg[x][y][self.colorChannel]
-                pixDiff = abs(newPix - oldPix)
+                pixDiff = abs(oldPix - newPix)
             
                 if pixDiff > self.threshold:
                     changedPixels += 1
                 
                 if changedPixels > self.sensitivity:
-                    #print "motion detected"
+                    print "motion detected " + str(x) + "," + str(y) 
                     return
 
         #print "motionless"

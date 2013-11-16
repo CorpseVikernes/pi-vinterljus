@@ -28,10 +28,10 @@ class CamTest():
         time.sleep(0.5)
         self.s, self.oldImg = self.cam.read()
         while True:
-            time.sleep(0.5)
+            time.sleep(0.1)
             self.s, self.img = self.cam.read()
-            imgStr = str(self.img)
-            print imgStr[0:100]
+            #imgStr = str(self.img)
+            #print imgStr[0:100]
 
             if (not self.s):
                 print "Failed to capture video"
@@ -46,7 +46,7 @@ class CamTest():
         changedPixels = 1
         for x in range(self.width):
             for y in range(self.height):
-                print str(x) + "," + str(y)
+                #print str(x) + "," + str(y)
                 newPix = self.img[x][y][self.colorChannel]
                 oldPix = self.oldImg[x][y][self.colorChannel]
                 pixDiff = abs(newPix - oldPix)

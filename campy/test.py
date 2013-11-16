@@ -1,4 +1,5 @@
 import cv2
+import cv
 import os
 import time
 
@@ -19,7 +20,8 @@ class CamTest():
         os.system("sudo uv4l --driver raspicam --auto-video_nr --extension-presence=1 --encoding rgba --width 320 --height 240 --nopreview")
  
         time.sleep(1)
-        self.cam = cv2.VideoCapture(0)
+        # self.cam = cv2.VideoCapture(0)
+        self.cam = cv.CaptureFromCAM(0)
 
     def run(self):
         # print "Starting motion detection"

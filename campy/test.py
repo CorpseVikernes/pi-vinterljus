@@ -24,10 +24,13 @@ class CamTest():
     def run(self):
         print "Starting motion detection"
         while True:
-            time.sleep(0.05)
+            time.sleep(0.5)
             self.s, self.img = self.cam.read()
+
+            if (not self.s):
+                print "Failed to capture video"
     
-            if self.oldImg != 0:
+            if self.oldImg != 0 and self.img != 0:
                 self.motionDetect()
             self.oldImg = self.img
 

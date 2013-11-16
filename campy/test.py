@@ -31,12 +31,12 @@ class CamTest():
             
             print str(self.img)
 
-            if (not self.s):
-                print "Failed to capture video"
+            #if (not self.s):
+                #print "Failed to capture video"
             
-            if self.s:
-                self.motionDetect()
-                self.oldImg = self.img
+            #if self.s:
+                #self.motionDetect()
+            self.oldImg = self.img
 
     def motionDetect(self):
     

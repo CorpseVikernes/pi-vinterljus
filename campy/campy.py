@@ -11,18 +11,18 @@ from Capture import Capture
 def main():
 
     # Init motion detection and socketserver
-    #socketClient = SocketClient()
-    #motion = Motion(socketClient)
-    capture = Capture()
+    socketClient = SocketClient()
+    motion = Motion(socketClient)
+    #capture = Capture()
 
     # Start program
-    #motion.start()
-    #socketClient.start()
-    capture.start()
+    motion.start()
+    socketClient.start()
+    #capture.start()
     
     # Wait until threads die
-    #motion.join()
-    #socketClient.join()
-    capture.join()
+    motion.join()
+    socketClient.join()
+    #capture.join()
 
 main()

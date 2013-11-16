@@ -29,16 +29,16 @@ class Motion(threading.Thread):
         self.sensitivity = 20
 
         # Preview options
-        self.previewON = True
+        self.previewON = False
         self.previewX = 0
         self.previewY = 0
         self.previewWidth = 400
         self.previewHeight = 400
 
         # Image options
-        self.imageWidth = 40
-        self.imageHeight = 40
-        self.imageQuality = 20
+        self.imageWidth = 100
+        self.imageHeight = 100
+        self.imageQuality = 80
         
         # Init buffers
         self.image1 = None
@@ -54,9 +54,9 @@ class Motion(threading.Thread):
 
         # Raspistill options
         if(self.previewON):
-            self.command = "raspistill -hf -vf -w %s -h %s -q %s -p %s,%s,%s,%s -t 0 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
+            self.command = "raspistill -hf -vf -w %s -h %s -q %s -p %s,%s,%s,%s -t 1 -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality, self.previewX, self.previewY, self.previewWidth, self.previewHeight)
         else:
-            self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 2 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
+            self.command = "raspistill -hf -vf -w %s -h %s -q %s -t 1 -n -e bmp -o -" %(self.imageWidth, self.imageHeight, self.imageQuality)
 
         # Set socket
         self.sock = socketClient
@@ -91,6 +91,7 @@ class Motion(threading.Thread):
                 pixdiff = abs(self.buffer1[xPos,yPos][1] - self.buffer2[xPos,yPos][1])
                 if pixdiff > self.threshold:
                     changedPixels += 1
+                    #print "Detect " + str(changedPixels)
 
                 # If a motion should be counted as detected
                 if changedPixels > self.sensitivity:   
@@ -125,5 +126,6 @@ class Motion(threading.Thread):
             # Swap comparison buffers
             self.image1  = self.image2
             self.buffer1 = self.buffer2
-            self.sock.sendMatrix(self.matrix)
+            print "Picture taken"
+            #self.sock.sendMatrix(self.matrix)
             

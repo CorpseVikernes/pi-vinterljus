@@ -1,4 +1,4 @@
 pi-vinterljus
 =============
 
-rasp code
+Code used for raspberry pi motion detection algorithm.
